@@ -1,4 +1,23 @@
 ember-jsoneditor
-================
+==========
 
-Ember component to view, edit and format JSON.
+## Usage
+
+```bash
+bower install --save ember-jsoneditor
+```
+
+## Developing
+
+After cloning repository, install library dependencies.
+
+```bash
+npm install
+bower install
+```
+
+Then build with `grunt`.
+
+```bash
+grunt serve
+```
