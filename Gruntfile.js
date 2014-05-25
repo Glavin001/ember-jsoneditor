@@ -318,6 +318,19 @@ module.exports = function (grunt) {
                         ]
                     }
                 ]
+            },
+            jsoneditor: {
+                files: [
+                    { // img
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.app %>/bower_components/jsoneditor',
+                        dest: '<%= yeoman.dist %>/styles',
+                        src: [
+                            'img/jsoneditor-icons.png'
+                        ]
+                    }
+                ]
             }
         },
         concurrent: {

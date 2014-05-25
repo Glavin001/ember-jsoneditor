@@ -1,11 +1,16 @@
 <!doctype html>
 <html>
     <head>
+
         <meta charset="utf-8">
-        <title>ember-jsoneditor</title>
+        <title>Ember-JSONEditor</title>
 
         <!-- build:css styles/main.css -->
         <link rel="stylesheet" href="styles/style.css">
+        <!-- endbuild -->
+
+        <!-- build:css(app) styles/components.css -->
+        <link rel="stylesheet" href="bower_components/jsoneditor/jsoneditor.css">
         <!-- endbuild -->
 
         <!-- build:css(build) styles/lib.css -->
@@ -14,11 +19,13 @@
 
 </head>
     <body>
+
         <!-- build:js(app) scripts/components.js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/handlebars/handlebars.runtime.js"></script>
         <script src="@@ember"></script>
         <script src="@@ember_data"></script>
+        <script src="bower_components/jsoneditor/jsoneditor.js"></script>
         <!-- endbuild -->
 
         <!-- build:js(build) scripts/lib.js -->
