@@ -1,22 +1,47 @@
-<div class="">
-    <h1 class="">Welcome to Ember-JSONEditor</h1>
+<div class="container">
 
-    <h2>Editor</h2>
+    <div class="jumbotron">
+      <h2>Welcome to Ember-JSONEditor</h2>
+      <p>Ember component to view, edit and format JSON.</p>
+      <p><a class="btn btn-primary btn-lg" target="_blank" href="https://github.com/Glavin001/ember-jsoneditor" role="button">Learn more</a></p>
+    </div>
 
-    {{json-editor json=model mode=controller.mode name=controller.name}}
+    <div class="well">
+      <h4>Features</h4>
+      <ul>
+        <li>Two-Way Bindings</li>
+        <li>Set <em>name</em> and <em>mode</em> with component</li>
+      </ul>
+      <hr/>
+      <p>Try it out for yourself!</p>
+    </div>
 
-    <hr/>
+    <div class="row">
+      <div class="col-sm-6">
 
-    <h2>Options</h2>
+        <h3>Editor 1</h3>
 
-    Name: {{input value=controller.name}}
+        {{json-editor json=model mode=controller.mode name=controller.name}}
 
-    <br/>
+        <h2>Options</h2>
 
-    Mode: {{view Ember.Select content=controller.modes value=controller.mode}}
+        Name: {{input value=controller.name}}
 
-    <h2>Raw JSON</h2>
+        <br/>
 
-    <pre>{{pretty-print model undefined 4}}</pre>
+        Mode: {{view Ember.Select content=controller.modes value=controller.mode}}
 
+      </div>
+      <div class="col-sm-6">
+
+        <h3>Editor 2</h3>
+
+        {{json-editor json=model mode="code" name="Two-Way Bindings"}}
+
+        <h2>Raw JSON</h2>
+
+        <pre>{{pretty-print model undefined 4}}</pre>
+
+      </div>
+    </div>
 </div>
