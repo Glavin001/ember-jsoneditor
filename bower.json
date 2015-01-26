@@ -13,6 +13,6 @@
     "ember-qunit": "0.1.8",
     "ember-qunit-notifications": "0.0.5",
     "qunit": "~1.17.1",
-    "jsoneditor": "~2.3.6"
+    "jsoneditor": "~3.1.2"
   }
 }

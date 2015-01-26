@@ -1,3 +1,4 @@
+/* global JSONEditor */
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -46,23 +47,7 @@ export default Ember.Component.extend({
     Object with options.
     */
     options: function() {
-        var props = this.getProperties([
-            'mode',
-            'modes',
-            '_change',
-            'search',
-            'history',
-            'name',
-            'indentation',
-            'error'
-        ]);
-        // Rename
-        props.change = props._change;
-        delete props._change;
-        // Add reference to this component
-        props.component = this;
-        return props;
-    }.property(
+      var props = this.getProperties([
         'mode',
         'modes',
         '_change',
@@ -71,6 +56,22 @@ export default Ember.Component.extend({
         'name',
         'indentation',
         'error'
+      ]);
+      // Rename
+      props.change = props._change;
+      delete props._change;
+      // Add reference to this component
+      props.component = this;
+      return props;
+    }.property(
+      'mode',
+      'modes',
+      '_change',
+      'search',
+      'history',
+      'name',
+      'indentation',
+      'error'
     ),
 
     /**
@@ -91,7 +92,7 @@ export default Ember.Component.extend({
     on change of contents
     */
     change: function() {
-        console.log('JSON Editor changed!');
+      console.log('JSON Editor changed!');
     },
 
     /**
@@ -100,7 +101,7 @@ export default Ember.Component.extend({
      The callback is only invoked for errors triggered by a users action.
     */
     error: function(error) {
-        console.error('An error occured: ', error);
+      console.error('An error occured: ', error);
     },
 
     /**
@@ -113,17 +114,17 @@ export default Ember.Component.extend({
     Triggers `change()` which is user defined.
     */
     _change: function() {
-        var self = this.component;
-        var editor = self.get('editor');
-        var json = editor.get();
-        //
-        self.set('_updating', true);
-        self.set('json', json);
-        self.set('_updating', false);
-        // Trigger Change event
-        if (!!self.change) {
-            self.change();
-        }
+      var self = this.component;
+      var editor = self.get('editor');
+      var json = editor.get();
+      //
+      self.set('_updating', true);
+      self.set('json', json);
+      self.set('_updating', false);
+      // Trigger Change event
+      if (!!self.change) {
+        self.change();
+      }
     },
 
     /**
@@ -158,40 +159,40 @@ export default Ember.Component.extend({
     Editor observer.
     */
     editorDidChange: function() {
-        var self = this;
-        self.get('editor');
+      var self = this;
+      self.get('editor');
     }.observes('editor').on('didInsertElement'),
 
     /**
     JSON observer.
     */
     jsonDidChange: function() {
-        var self = this;
-        if (Ember.isEqual(self.get('_updating'), false)) {
-          var editor = self.get('editor');
-          var json = self.get('json');
-          editor.set(json);
-        }
+      var self = this;
+      if (Ember.isEqual(self.get('_updating'), false)) {
+        var editor = self.get('editor');
+        var json = self.get('json');
+        editor.set(json);
+      }
     }.observes('json'),
 
     /**
     Mode observer.
     */
     modeDidChange: function() {
-        var self = this;
-        var editor = self.get('editor');
-        var mode = self.get('mode');
-        editor.setMode(mode);
+      var self = this;
+      var editor = self.get('editor');
+      var mode = self.get('mode');
+      editor.setMode(mode);
     }.observes('mode'),
 
     /**
     Name observer.
     */
     nameDidChange: function() {
-        var self = this;
-        var editor = self.get('editor');
-        var name = self.get('name');
-        editor.setName(name);
+      var self = this;
+      var editor = self.get('editor');
+      var name = self.get('name');
+      editor.setName(name);
     }.observes('name'),
 
 });
