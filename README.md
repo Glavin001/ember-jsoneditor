@@ -1,40 +1,25 @@
-[Ember-JSONEditor](https://github.com/Glavin001/ember-jsoneditor)
-==========
+# Ember-jsoneditor
 
-> Ember component for [JSONEditor](https://github.com/josdejong/jsoneditor/) to view, edit and format JSON.
+This README outlines the details of collaborating on this Ember addon.
 
-**Live demo:** http://glavin001.github.io/ember-jsoneditor/dist/
+## Installation
 
----
+* `git clone` this repository
+* `npm install`
+* `bower install`
 
-## Usage
+## Running
 
-### Installation
+* `ember server`
+* Visit your app at http://localhost:4200.
 
-Follow the [installation instructions for JSONEditor](https://github.com/josdejong/jsoneditor/#install)
-then install [ember-jsoneditor](https://github.com/Glavin001/ember-jsoneditor).
+## Running Tests
 
-```bash
-bower install --save ember-jsoneditor
-```
+* `ember test`
+* `ember test --server`
 
-### Ember Component
+## Building
 
-```handlebars
-{{json-editor json=model mode=controller.mode name=controller.name}}
-```
+* `ember build`
 
-## Developing
-
-After cloning repository, install library dependencies.
-
-```bash
-npm install
-bower install
-```
-
-Then build with `grunt`.
-
-```bash
-grunt serve
-```
+For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
