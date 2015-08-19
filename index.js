@@ -7,9 +7,9 @@ module.exports = {
   included: function(app) {
     this._super.included(app);
 
-    app.import('bower_components/jsoneditor/jsoneditor.js');
-    app.import('bower_components/jsoneditor/jsoneditor.css');
-    app.import('bower_components/jsoneditor/img/jsoneditor-icons.png', {
+    app.import(app.bowerDirectory + '/jsoneditor/dist/jsoneditor.js');
+    app.import(app.bowerDirectory + '/jsoneditor/dist/jsoneditor.css');
+    app.import(app.bowerDirectory + '/jsoneditor/dist/img/jsoneditor-icons.png', {
       destDir: 'assets/img'
     });
   }
