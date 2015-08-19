@@ -36,7 +36,7 @@ export default Ember.Component.extend({
         // Editor is already created and cached.
         return self.get('_editor');
       }
-    }.property('element', 'options', 'json'),
+    }.property('options', 'json'),
 
     /**
     JSON object.
