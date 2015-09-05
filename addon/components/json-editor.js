@@ -178,9 +178,36 @@ export default Ember.Component.extend({
     var self = this;
     self.get('editor');
   }),
+  // didInsertElement: function() {
+  //   // console.log('didInsertElement');
+  //   this.get('editor');
+  // },
+  /**
+  See https://github.com/emberjs/ember.js/issues/10661
+  and http://stackoverflow.com/a/25523850/2578205
+  */
   didInsertElement: function() {
-    // console.log('didInsertElement');
-    this.get('editor');
+    // console.log('didInsertElement', this, controller);
+    var controller = this.get('targetObject');
+    // Find the key on the controller for the data passed to this component
+    // See http://stackoverflow.com/a/9907509/2578205
+    var propertyKey;
+    var data = this.get('json');
+    for ( var prop in controller ) {
+        if ( controller.hasOwnProperty( prop ) ) {
+             if ( controller[ prop ] === data ) {
+               propertyKey = prop;
+               break;
+             }
+        }
+    }
+    if (Ember.isEmpty(propertyKey)) {
+      // console.log('Could not find propertyKey', data);
+    } else {
+      // console.log('Found key!', propertyKey, data);
+      controller.addObserver(propertyKey, this, this.jsonDidChange);
+    }
+    this.editorDidChange();
   },
 
   /**
