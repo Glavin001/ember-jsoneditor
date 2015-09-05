@@ -3,7 +3,6 @@
 
 module.exports = {
   name: 'ember-jsoneditor',
-
   included: function(app) {
     this._super.included(app);
 
@@ -12,5 +11,6 @@ module.exports = {
     app.import(app.bowerDirectory + '/jsoneditor/dist/img/jsoneditor-icons.png', {
       destDir: 'assets/img'
     });
+
   }
 };

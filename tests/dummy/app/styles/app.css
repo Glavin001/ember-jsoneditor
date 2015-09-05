@@ -1,3 +1,8 @@
-html, body {
-  margin: 20px;
+.col-sm-6 {
+  width: 50%;
+  float: left;
+}
+
+.jsoneditor-component {
+    height: 300px;
 }

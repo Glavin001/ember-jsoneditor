@@ -1,7 +1,7 @@
 module.exports = {
-  normalizeEntityName: function() {},
+  normalizeEntityName: function() {}, // no-op since we're just adding dependencies
 
   afterInstall: function() {
-    this.addBowerPackageToProject('jsoneditor');
+    return this.addBowerPackageToProject('jsoneditor'); // is a promise
   }
 };
