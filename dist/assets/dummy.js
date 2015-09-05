@@ -776,7 +776,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"name":"ember-jsoneditor","version":"0.0.0+7207a4a2"});
+  require("dummy/app")["default"].create({"name":"ember-jsoneditor","version":"0.0.0+10ef0c62"});
 }
 
 /* jshint ignore:end */
