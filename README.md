@@ -1,4 +1,4 @@
-# Ember JSON Editor
+# Ember JSON Editor [![npm version](https://badge.fury.io/js/ember-jsoneditor.svg)](http://badge.fury.io/js/ember-jsoneditor)
 
 > Ember component for [JSON Editor](https://github.com/josdejong/jsoneditor/) to view, edit and format JSON.
 
