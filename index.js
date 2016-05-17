@@ -8,7 +8,7 @@ module.exports = {
 
     app.import(app.bowerDirectory + '/jsoneditor/dist/jsoneditor.js');
     app.import(app.bowerDirectory + '/jsoneditor/dist/jsoneditor.css');
-    app.import(app.bowerDirectory + '/jsoneditor/dist/img/jsoneditor-icons.png', {
+    app.import(app.bowerDirectory + '/jsoneditor/dist/img/jsoneditor-icons.svg', {
       destDir: 'assets/img'
     });
 
