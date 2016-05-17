@@ -1,6 +1,6 @@
 {
   "name": "ember-jsoneditor",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Ember component to view, edit and format JSON.",
   "directories": {
     "doc": "doc",
@@ -56,6 +56,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL":"http://blog.glavin.org/ember-jsoneditor/"
+    "demoURL": "http://blog.glavin.org/ember-jsoneditor/"
   }
 }
