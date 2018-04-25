@@ -5,7 +5,7 @@ node_js:
   # so that your addon works for all apps
   - "4"
 
-sudo: false
+sudo: true
 dist: trusty
 
 addons:
@@ -38,6 +38,10 @@ before_install:
   - npm config set spin false
   - npm install -g npm@4
   - npm --version
+
+before_script:
+  - npm install -g bower
+  - bower install
 
 script:
   - npm run lint:js
