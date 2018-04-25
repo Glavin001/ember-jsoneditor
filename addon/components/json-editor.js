@@ -1,6 +1,5 @@
 /* global JSONEditor */
 import { isEmpty, isEqual } from '@ember/utils';
-
 import { computed, observer } from '@ember/object';
 import Component from '@ember/component';
 
@@ -48,7 +47,7 @@ export default Component.extend({
   /**
   JSON object.
   */
-  json: {},
+  json: null,
 
   /**
   Object with options.
@@ -61,7 +60,7 @@ export default Component.extend({
     'history',
     'name',
     'indentation',
-    'error',
+    'onError',
     function() {
       // console.log('options');
 
@@ -73,10 +72,10 @@ export default Component.extend({
         'history',
         'name',
         'indentation',
-        'error'
+        'onError'
       ]);
       // Rename
-      props.change = props._change;
+      props.onChange = props._change;
       delete props._change;
       // Add reference to this component
       props.component = this;
@@ -94,7 +93,7 @@ export default Component.extend({
   Create a box in the editor menu where the user can switch between the specified modes.
   Available values: see option mode.
   */
-  modes: ['tree', 'view', 'form', 'text', 'code'],
+  modes: computed(() => ['tree', 'view', 'form', 'text', 'code']),
 
   /**
   Callback method, triggered
@@ -110,6 +109,7 @@ export default Component.extend({
    The callback is only invoked for errors triggered by a users action.
   */
   error: function(error) {
+    return error;
     // console.error('An error occured: ', error);
   },
 
@@ -137,7 +137,7 @@ export default Component.extend({
       self.set('json', json);
       self.set('_updating', false);
       // Trigger Change event
-      if (!!self.change) {
+      if (self.change) {
         self.change();
       }
     } catch (error) {
@@ -191,7 +191,7 @@ export default Component.extend({
   */
   didInsertElement: function() {
     // console.log('didInsertElement', this, controller);
-    var controller = this.get('targetObject');
+    var controller = this.get('target');
     // Find the key on the controller for the data passed to this component
     // See http://stackoverflow.com/a/9907509/2578205
     var propertyKey;
