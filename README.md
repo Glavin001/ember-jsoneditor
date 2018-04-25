@@ -14,22 +14,32 @@
 
 For a complete example, see the [dummy test app in `tests/dummy/app/`](https://github.com/Glavin001/ember-jsoneditor/tree/master/tests/dummy/app).
 
+## Documentation
+
+See [jsoneditor](https://github.com/josdejong/jsoneditor/blob/master/docs/api.md) for configuration details.  ember-jsoneditor supports the following configuration options:
+
+   ```
+   mode, modes, onChange, search, history, name, indentation and onError
+  ```
+
+  Breaking Changes - prior versions of [jsoneditor](https://github.com/josdejong/jsoneditor) used `change` and `error` rather than `onChange` and `onError`
+
+
+
 ## Installation
 
-```bash
-ember install ember-jsoneditor
-```
-
-## Development
-
-* `git clone` this repository
+* `git clone <repository-url>` this repository
+* `cd my-addon`
 * `npm install`
-* `bower install`
-* `ember server`
+
+## Running
+
+* `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ## Running Tests
 
+* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
 * `ember test`
 * `ember test --server`
 
@@ -37,12 +47,4 @@ ember install ember-jsoneditor
 
 * `ember build`
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
-
-## Publishing to GitHub Pages
-
-See https://github.com/poetic/ember-cli-github-pages
-
-```bash
-ember github-pages:commit --message "Your commit message"
-```
+For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
