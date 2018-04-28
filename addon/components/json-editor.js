@@ -1,13 +1,15 @@
 /* global JSONEditor */
-import { isEmpty, isEqual } from '@ember/utils';
+import { isEmpty, isEqual, isPresent } from '@ember/utils';
 import { computed, observer } from '@ember/object';
 import Component from '@ember/component';
+import { bind }  from '@ember/runloop';
 
 export default Component.extend({
   /**
   Element tag name.
   */
   tagName: 'div',
+
   /**
   Element classes.
   */
@@ -16,76 +18,83 @@ export default Component.extend({
   /**
   Cached editor.
   */
-  _editor: undefined,
-  /**
+  _editor: null,
 
+  /**
+  Passed parameters 
   */
-  editor: computed('options', 'json', function() {
-    var self = this;
-    var editor = self.get('_editor');
-    // console.log('editor', editor);
-    if (isEmpty(editor)) {
-      // Empty, create it.
-      var container = self.$().get(0);
-      // console.log('container', self.$(), container);
-      if (isEmpty(container)) {
-        return undefined;
-      } else {
-        var options = self.get('options');
-        var json = self.get('json');
-        editor = new JSONEditor(container, options, json);
-        // console.log('new editor', editor);
-        self.set('_editor', editor);
-        return editor;
-      }
-    } else {
-      // Editor is already created and cached.
-      return editor;
-    }
-  }),
+  editor: null,
+
 
   /**
-  JSON object.
+   Component is rendered on DOM, so
+   we can create the editor
+   */
+  didInsertElement() {
+    this._super(...arguments);
+    let options = this.get('options');
+    let json = this.get('json');
+    let editor = new JSONEditor(this.element, options, json);
+
+    // set cached editor
+    this.set('_editor', editor);
+    this.set('editor', editor);
+  },
+
+  /**
+   Tear down the editor if component
+   is being destroyed
+   */
+  willDestroyElement() {
+    this._super(...arguments);
+    this.get('editor').destroy();
+  },
+  /**
+  JSON object
   */
   json: null,
 
   /**
-  Object with options.
+  Object with options
   */
   options: computed(
     'mode',
     'modes',
-    '_change',
+    'change',
     'search',
     'history',
     'name',
     'indentation',
-    'onError',
-    function() {
-      // console.log('options');
+    'error',
+    function () {
 
-      var props = this.getProperties([
-        'mode',
-        'modes',
-        '_change',
-        'search',
-        'history',
-        'name',
-        'indentation',
-        'onError'
-      ]);
-      // Rename
-      props.onChange = props._change;
-      delete props._change;
-      // Add reference to this component
-      props.component = this;
+      let props = {};
+
+      props['history'] = this.history
+      props['indentation'] = this.indentation;
+      props['mode'] = this.mode;
+      props['modes'] = this.modes;
+      props['name'] = this.name;
+      props['search'] = this.search;
+
+      // https://balinterdi.com/blog/ember-dot-run-dot-bind/
+      // assign internal change function to jsoneditor onChange
+      props['onChange'] = bind(this, this._change);
+
+      // assign internal error function to jsoneditor onError
+      props['onError'] = bind(this, this._error);
+
+      // set nodes if none passed in
+      const modes = ['tree', 'view', 'form', 'text', 'code'];
+      props.modes = isPresent(props.modes) ? props.modes : modes;
+
       return props;
     }),
 
   /**
   Editor mode. Available values:
   'tree' (default), 'view',
-  'form', 'text', and 'code'.
+  'form', 'text', and 'code'
   */
   mode: 'tree',
 
@@ -93,24 +102,28 @@ export default Component.extend({
   Create a box in the editor menu where the user can switch between the specified modes.
   Available values: see option mode.
   */
-  modes: computed(() => ['tree', 'view', 'form', 'text', 'code']),
+  modes: null,
 
   /**
   Callback method, triggered
   on change of contents
   */
-  change: function() {
-    // console.log('JSON Editor changed!');
-  },
+  change: null,
 
   /**
    Set a callback method triggered when an error occurs.
    Invoked with the error as first argument.
-   The callback is only invoked for errors triggered by a users action.
+   The callback is only invoked for errors triggered by a users action
   */
-  error: function(error) {
-    return error;
-    // console.error('An error occured: ', error);
+  error: null,
+
+  /**
+   Error event handler.
+   Triggers `error()` which is user defined
+   */
+  _error:function(error) {
+    if (this.error)
+      this.error(error);
   },
 
   /**
@@ -120,28 +133,27 @@ export default Component.extend({
 
   /**
   Change event handler.
-  Triggers `change()` which is user defined.
+  Triggers `change()` which is user defined
   */
-  _change: function() {
-    // console.log('_change', this);
+  _change() {
+    let editor = this.get('_editor');
 
-    var self = this.component;
-    var editor = self.get('_editor');
     if (isEmpty(editor)) {
       return;
     }
     try {
-      var json = editor.get();
+      let json = editor.get();
       //
-      self.set('_updating', true);
-      self.set('json', json);
-      self.set('_updating', false);
+      this.set('_updating', true);
+      this.set('json', json);
+      this.set('_updating', false);
+
       // Trigger Change event
-      if (self.change) {
-        self.change();
+      if (this.change) {
+        this.change();
       }
     } catch (error) {
-      self.error(error);
+      this._error(error);
     }
   },
 
@@ -152,6 +164,7 @@ export default Component.extend({
   'tree', 'view', and 'form'
   */
   search: true,
+
   /**
   Enable history (undo/redo).
   True by default
@@ -159,12 +172,14 @@ export default Component.extend({
   'tree', 'view', and 'form'
   */
   history: true,
+
   /**
   Field name for the root node.
   Only applicable for modes
   'tree', 'view', and 'form'
   */
   name: 'JSONEditor',
+
   /**
   Number of indentation
   spaces. 4 by default.
@@ -174,78 +189,37 @@ export default Component.extend({
   indentation: 4,
 
   /**
-  Editor observer.
+  Editor did change.
   */
-  editorDidChange: observer('editor', function() {
-    // console.log('editorDidChange');
-    var self = this;
-    self.get('editor');
+  editorDidChange: observer('editor', function () {
+
+    // this.get('editor');
   }),
-  // didInsertElement: function() {
-  //   // console.log('didInsertElement');
-  //   this.get('editor');
-  // },
-  /**
-  See https://github.com/emberjs/ember.js/issues/10661
-  and http://stackoverflow.com/a/25523850/2578205
-  */
-  didInsertElement: function() {
-    // console.log('didInsertElement', this, controller);
-    var controller = this.get('target');
-    // Find the key on the controller for the data passed to this component
-    // See http://stackoverflow.com/a/9907509/2578205
-    var propertyKey;
-    var data = this.get('json');
-    for ( var prop in controller ) {
-        if ( controller.hasOwnProperty( prop ) ) {
-             if ( controller[ prop ] === data ) {
-               propertyKey = prop;
-               break;
-             }
-        }
-    }
-    if (isEmpty(propertyKey)) {
-      // console.log('Could not find propertyKey', data);
-    } else {
-      // console.log('Found key!', propertyKey, data);
-      controller.addObserver(propertyKey, this, this.jsonDidChange);
-    }
-    this.editorDidChange();
-  },
 
   /**
-  JSON observer.
+  JSON did change
   */
-  jsonDidChange: observer('json', function() {
-    // console.log('jsonDidChange');
-    var self = this;
-    if (isEqual(self.get('_updating'), false)) {
-      var editor = self.get('editor');
-      var json = self.get('json');
-      editor.set(json);
+  jsonDidChange: observer('json', function () {
+    if (isEqual(this.get('_updating'), false)) {
+      let json = this.get('json');
+      this.get('editor').set(json);
     }
   }),
 
   /**
-  Mode observer.
+  Mode did change
   */
-  modeDidChange: observer('mode', function() {
-    // console.log('modeDidChange');
-    var self = this;
-    var editor = self.get('editor');
-    var mode = self.get('mode');
-    editor.setMode(mode);
+  modeDidChange: observer('mode', function () {
+    let mode = this.get('mode');
+    this.get('editor').setMode(mode);
   }),
 
   /**
-  Name observer.
+  Name did change
   */
-  nameDidChange: observer('name', function() {
-    // console.log('nameDidChange');
-    var self = this;
-    var editor = self.get('editor');
-    var name = self.get('name');
-    editor.setName(name);
+  nameDidChange: observer('name', function () {
+    let name = this.get('name');
+    this.get('editor').setName(name);
   }),
 
 });

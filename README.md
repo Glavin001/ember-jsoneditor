@@ -5,6 +5,11 @@
 **Live demo**: http://glavin001.github.io/ember-jsoneditor/
 
 ---
+## Installation
+
+```
+ember install ember-jsoneditor
+```
 
 ## Usage
 
@@ -16,17 +21,48 @@ For a complete example, see the [dummy test app in `tests/dummy/app/`](https://g
 
 ## Documentation
 
-See [jsoneditor](https://github.com/josdejong/jsoneditor/blob/master/docs/api.md) for configuration details.  ember-jsoneditor supports the following configuration options:
-
-   ```
-   mode, modes, onChange, search, history, name, indentation and onError
-  ```
-
-  Breaking Changes - prior versions of [jsoneditor](https://github.com/josdejong/jsoneditor) used `change` and `error` rather than `onChange` and `onError`
+See [jsoneditor](https://github.com/josdejong/jsoneditor/blob/master/docs/api.md) for configuration details.  ember-jsoneditor supports the following jsoneditor options:
 
 
+  Option | Description |Default
+  -------|-------------|-------
+  change | maps to jsoneditor's onChange event | null
+  error | maps to jsoneditor's onError event | null
+  history | Enables history undo/redo button | true
+  indentation | number of indentation spaces | 2
+  mode |  Editor mode - modes | tree
+  modes | Drop down to select editor mode.  Options: 'tree', 'view', 'form', 'code', 'text' | All options
+  name | Field name for the JSON root node,| null
+  search | boolean - show editor search box | true
 
-## Installation
+Example for using event options
+
+```javascript
+// app/controllers/application.js
+import Controller from '@ember/controller';
+
+export default Controller.extend({
+   /// ....
+   actions: {
+    myError(error){
+      alert(`Error: ${error}`)
+    },
+
+    itChanged() {
+      alert("The Data Changed!");
+    }
+  }
+})
+```
+
+```javascript
+// app/templates/application.hbs
+
+{{json-editor json=model mode=mode name=name change=(action 'itChanged') error=(action 'myError')}}
+
+```
+
+## Development
 
 * `git clone <repository-url>` this repository
 * `cd my-addon`
