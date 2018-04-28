@@ -31,7 +31,7 @@ See [jsoneditor](https://github.com/josdejong/jsoneditor/blob/master/docs/api.md
   history | Enables history undo/redo button | true
   indentation | number of indentation spaces | 2
   mode |  Editor mode - modes | tree
-  modes | Drop down to select editor mode.  Options: 'tree', 'view', 'form', 'code', 'text' | undefined
+  modes | Drop down to select editor mode.  Options: 'tree', 'view', 'form', 'code', 'text' | All options
   name | Field name for the JSON root node,| null
   search | boolean - show editor search box | true
 
