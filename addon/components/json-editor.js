@@ -1,8 +1,8 @@
-/* global JSONEditor */
 import { isEmpty, isEqual, isPresent } from '@ember/utils';
 import { computed, observer } from '@ember/object';
 import Component from '@ember/component';
 import { bind }  from '@ember/runloop';
+import JSONEditor from 'jsoneditor';
 
 export default Component.extend({
   /**
@@ -32,8 +32,8 @@ export default Component.extend({
    */
   didInsertElement() {
     this._super(...arguments);
-    let options = this.get('options');
-    let json = this.get('json');
+    let options = this.options;
+    let json = this.json;
     let editor = new JSONEditor(this.element, options, json);
 
     // set cached editor
@@ -47,7 +47,7 @@ export default Component.extend({
    */
   willDestroyElement() {
     this._super(...arguments);
-    this.get('editor').destroy();
+    this.editor.destroy();
   },
   /**
   JSON object
@@ -136,7 +136,7 @@ export default Component.extend({
   Triggers `change()` which is user defined
   */
   _change() {
-    let editor = this.get('_editor');
+    let editor = this._editor;
 
     if (isEmpty(editor)) {
       return;
@@ -200,9 +200,9 @@ export default Component.extend({
   JSON did change
   */
   jsonDidChange: observer('json', function () {
-    if (isEqual(this.get('_updating'), false)) {
-      let json = this.get('json');
-      this.get('editor').set(json);
+    if (isEqual(this._updating, false)) {
+      let json = this.json;
+      this.editor.set(json);
     }
   }),
 
@@ -210,16 +210,16 @@ export default Component.extend({
   Mode did change
   */
   modeDidChange: observer('mode', function () {
-    let mode = this.get('mode');
-    this.get('editor').setMode(mode);
+    let mode = this.mode;
+    this.editor.setMode(mode);
   }),
 
   /**
   Name did change
   */
   nameDidChange: observer('name', function () {
-    let name = this.get('name');
-    this.get('editor').setName(name);
+    let name = this.name;
+    this.editor.setName(name);
   }),
 
 });
