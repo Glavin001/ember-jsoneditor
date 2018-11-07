@@ -1,7 +1,7 @@
 {
   "name": "jsoneditor",
   "dependencies": {
-    "jsoneditor": "^5.14.1"
+    "jsoneditor": "^5.25.0"
   },
   "devDependencies": {}
 }
