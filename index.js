@@ -3,11 +3,11 @@
 module.exports = {
   name: 'ember-jsoneditor',
   included: function(app) {
-    this._super.included(app);
+    this._super.included.apply(this, arguments);
 
-    app.import(app.bowerDirectory + '/jsoneditor/dist/jsoneditor.js');
-    app.import(app.bowerDirectory + '/jsoneditor/dist/jsoneditor.css');
-    app.import(app.bowerDirectory + '/jsoneditor/dist/img/jsoneditor-icons.svg', {
+    // app.import(app.bowerDirectory + '/jsoneditor/dist/jsoneditor.js');
+    app.import('node_modules/jsoneditor/dist/jsoneditor.css');
+    app.import('node_modules/jsoneditor/dist/img/jsoneditor-icons.svg', {
       destDir: 'assets/img'
     });
 

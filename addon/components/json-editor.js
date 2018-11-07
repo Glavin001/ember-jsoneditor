@@ -1,8 +1,8 @@
-/* global JSONEditor */
 import { isEmpty, isEqual, isPresent } from '@ember/utils';
 import { computed, observer } from '@ember/object';
 import Component from '@ember/component';
 import { bind }  from '@ember/runloop';
+import JSONEditor from 'jsoneditor';
 
 export default Component.extend({
   /**

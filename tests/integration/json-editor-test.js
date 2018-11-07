@@ -41,7 +41,7 @@ test('mode - tree', function (assert) {
 test('mode - view', function (assert) {
   this.render(hbs`{{json-editor json=json mode='view'}}`);
   assert.ok(this.$('.jsoneditor-modes button').text().trim().indexOf('View') > -1);
-  assert.equal(this.$('.jsoneditor-tree > div[contenteditable="false"]').length, 4);
+  assert.equal(this.$('.jsoneditor-tree > div[contenteditable="false"]').length, 5);
 });
 
 test('mode - form', function (assert) {
