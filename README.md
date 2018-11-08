@@ -37,6 +37,13 @@ See [jsoneditor](https://github.com/josdejong/jsoneditor/blob/master/docs/api.md
 
 Example for using event options
 
+```hbs
+// app/templates/application.hbs
+
+{{json-editor json=model mode=mode name=name change=(action 'itChanged') error=(action 'myError')}}
+
+```
+
 ```javascript
 // app/controllers/application.js
 import Controller from '@ember/controller';
@@ -53,13 +60,6 @@ export default Controller.extend({
     }
   }
 })
-```
-
-```javascript
-// app/templates/application.hbs
-
-{{json-editor json=model mode=mode name=name change=(action 'itChanged') error=(action 'myError')}}
-
 ```
 
 ## Development
