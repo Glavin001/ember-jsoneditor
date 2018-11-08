@@ -52,4 +52,3 @@ before_install:
   - npm config set spin false
   - npm install -g npm@4
   - npm --version
-
