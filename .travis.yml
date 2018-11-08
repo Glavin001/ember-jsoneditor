@@ -31,6 +31,7 @@ jobs:
     - stage: "Tests"
       name: "Tests"
       script:
+        - npm run lint:hbs
         - npm run lint:js
         - npm test
 
@@ -52,5 +53,3 @@ before_install:
   - npm install -g npm@4
   - npm --version
 
-# script:
-  # - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
