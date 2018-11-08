@@ -1,6 +1,6 @@
 {
   "name": "ember-jsoneditor",
-  "version": "0.3.1",
+  "version": "0.3.4",
   "description": "Ember component to view, edit and format JSON.",
   "keywords": [
     "ember-addon",
@@ -58,8 +58,7 @@
     "ember-try": "^0.2.23",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^8.0.0",
-    "loader.js": "^4.2.3",
-    "qunit-dom": "^0.6.2"
+    "loader.js": "^4.2.3"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
