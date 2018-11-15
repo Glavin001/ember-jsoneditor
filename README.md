@@ -28,6 +28,7 @@ See [jsoneditor](https://github.com/josdejong/jsoneditor/blob/master/docs/api.md
   -------|-------------|-------
   change | maps to jsoneditor's onChange event | null
   error | maps to jsoneditor's onError event | null
+  expand | if true, renders with json tree expanded | false
   history | Enables history undo/redo button | true
   indentation | number of indentation spaces | 2
   mode |  Editor mode - modes | tree

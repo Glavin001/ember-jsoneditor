@@ -36,6 +36,9 @@ export default Component.extend({
     let json = this.json;
     let editor = new JSONEditor(this.element, options, json);
 
+    if (this.expand)
+      editor.expandAll();
+      
     // set cached editor
     this.set('_editor', editor);
     this.set('editor', editor);
