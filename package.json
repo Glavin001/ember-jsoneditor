@@ -1,6 +1,6 @@
 {
   "name": "ember-jsoneditor",
-  "version": "0.7.0",
+  "version": "0.9.0",
   "description": "Ember component to view, edit and format JSON.",
   "keywords": [
     "ember-addon",
