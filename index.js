@@ -30,6 +30,6 @@ module.exports = {
       }
     );
 
-    return new MergeTrees([vendorTree, cssTree, iconTree]);
+    return new MergeTrees([cssTree, iconTree]);
   }
 };
