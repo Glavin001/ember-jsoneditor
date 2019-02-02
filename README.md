@@ -42,12 +42,22 @@ See [jsoneditor](https://github.com/josdejong/jsoneditor/blob/master/docs/api.md
   name | Field name for the JSON root node,| null
   search | boolean - show editor search box | true
 
+
 Example for using event options
 
-```hbs
-// app/templates/application.hbs
+```handlebars
+{{!-- app/templates/application.hbs --}}
 
 {{json-editor json=model mode=mode name=name change=(action 'itChanged') error=(action 'myError')}}
+
+```
+
+Using angle bracket invocation
+
+```hbs
+{{!-- app/templates/application.hbs --}}
+
+<JsonEditor @json={{model}} @mode={{mode}} @name={{name}} @change={{action 'itChanged'}} @error={{action 'myError'}} />
 
 ```
 
