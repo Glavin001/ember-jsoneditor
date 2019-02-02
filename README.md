@@ -17,6 +17,12 @@ ember install ember-jsoneditor
 {{json-editor json=model mode=mode name=name}}
 ```
 
+Or using angle bracket invocation, available in Ember 3.4+
+
+```handlebars
+<JsonEditor @json={{model}} @mode={{mode}} @name={{name}} />
+```
+
 For a complete example, see the [dummy test app in `tests/dummy/app/`](https://github.com/Glavin001/ember-jsoneditor/tree/master/tests/dummy/app).
 
 ## Documentation
