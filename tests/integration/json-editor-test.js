@@ -15,7 +15,7 @@ module('Integration | Component | json editor', function(hooks) {
   test('json loads', async function(assert) {
     await render(hbs`{{json-editor json=json}}`);
 
-    assert.equal(this.$('.jsoneditor-values tbody > tr').text().trim(), "JSONEditor{2}name:bobthrees:company");
+    assert.equal(find('.jsoneditor-values tbody > tr').textContent.trim(), "JSONEditor{2}name:bobthrees:company");
   });
 
 
