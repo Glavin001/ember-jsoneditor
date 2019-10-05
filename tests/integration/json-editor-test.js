@@ -3,7 +3,6 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-
 // tests borrowed from ember-cli-jsoneditor - why reinvent the wheel? - thanks!!!
 module('Integration | Component | json editor', function(hooks) {
   setupRenderingTest(hooks);
@@ -15,28 +14,49 @@ module('Integration | Component | json editor', function(hooks) {
   test('json loads', async function(assert) {
     await render(hbs`{{json-editor json=json}}`);
 
-    assert.equal(find('.jsoneditor-values tbody > tr').textContent.trim(), "JSONEditor{2}name:bobthrees:company");
-  });
+    // hacky, but this was simple using JQuery
+    let jsonData = "";
 
+    const rows = findAll('.jsoneditor-values tbody > tr')
+
+    for (let i = 0; i < rows.length; i++){
+      for (let j = 0; j < rows[i].cells.length; j++)
+      {
+        jsonData += rows[i].cells[j].textContent.trim();
+      }
+    }
+
+    assert.equal(jsonData, "JSONEditor{2}name:bobthrees:company");
+  });
 
   test('json', async function(assert) {
     assert.expect(2);
 
     await render(hbs`{{json-editor json=json onChange=(action (mut json))}}`);
 
-    assert.equal(this.$('.jsoneditor-tree > div[contenteditable="true"]:last').text().trim(), 'company');
+    // prettier-ignore
+    let content = find('.jsoneditor-tree').querySelectorAll('div[contenteditable="true"]');
+    let last = content[content.length - 1].textContent.toString();
+    assert.equal(last, 'company');
 
-    this.set('json', {
-      foo: 'foo'
-    });
+    // prettier-ignore
+    this.set('json', { foo: 'foo' });
+    content = find('.jsoneditor-tree').querySelectorAll(
+      'div[contenteditable="true"]'
+    );
+    last = content[content.length - 1].textContent.toString();
 
-    assert.equal(this.$('.jsoneditor-tree > div[contenteditable="true"]:last').text().trim(), 'foo');
+    assert.equal(last, 'foo');
   });
 
   test('mode - tree', async function(assert) {
     await render(hbs`{{json-editor json=json mode='tree'}}`);
+
     assert.ok(find('.jsoneditor-modes button').textContent.trim().indexOf('Tree') > -1);
-    assert.equal(this.$('.jsoneditor-tree > div[contenteditable="true"]:last').text().trim(), 'company');
+
+    const content = find('.jsoneditor-tree').querySelectorAll('div[contenteditable="true"]');
+    const last = content[content.length - 1].textContent.toString();
+    assert.equal(last, 'company');
   });
 
   test('mode - view', async function(assert) {
@@ -49,7 +69,11 @@ module('Integration | Component | json editor', function(hooks) {
     await render(hbs`{{json-editor json=json mode='form'}}`);
     assert.ok(find('.jsoneditor-modes button').textContent.trim().indexOf('Form') > -1);
     assert.equal(findAll('.jsoneditor-tree > div[contenteditable="true"]').length, 2);
-    assert.equal(this.$('.jsoneditor-tree > div[contenteditable="true"]:last').text().trim(), 'company');
+
+    const content = find('.jsoneditor-tree').querySelectorAll('div[contenteditable="true"]');
+    const last = content[content.length - 1].textContent.toString();
+
+    assert.equal(last, 'company');
   });
 
   test('mode - text', async function(assert) {
@@ -59,6 +83,12 @@ module('Integration | Component | json editor', function(hooks) {
 
   test('mode - code', async function(assert) {
     await render(hbs`{{json-editor json=json mode='code'}}`);
-    assert.ok(find('.jsoneditor-modes button').textContent.trim().indexOf('Code') > -1);
+
+    assert.ok(
+      find('.jsoneditor-modes')
+        .querySelector('button')
+        .textContent.trim()
+        .indexOf('Code') > -1
+    );
   });
 });
