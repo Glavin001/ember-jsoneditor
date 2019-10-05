@@ -48,7 +48,7 @@
       <h3>
         Editor 1
       </h3>
-      {{json-editor json=model mode=mode name=name}}
+      <JsonEditor @json={{this.model}} @mode={{this.mode}} @name={{this.name}} />
       <h2>
         Options
       </h2>
@@ -69,7 +69,7 @@
       <h3>
         Editor 2
       </h3>
-      {{json-editor json=model modes=modes mode="code" name="Two-Way Bindings"}}
+      <JsonEditor @json={{this.model}} @modes={{this.modes}} @mode="code" @name="Two-Way Bindings" />
       <h2>
         Raw JSON
       </h2>
