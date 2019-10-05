@@ -28,6 +28,7 @@
     "start": "ember serve",
     "test": "ember test",
     "test:all": "ember try:each",
+    "deploy": "ember build && ember github-pages:commit --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\" && git push origin gh-pages:gh-pages",
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "auto-changelog": {
