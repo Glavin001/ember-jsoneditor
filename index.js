@@ -1,4 +1,5 @@
 "use strict";
+/* eslint node/no-extraneous-require: 0 */
 var path = require("path");
 var Funnel = require("broccoli-funnel");
 var MergeTrees = require("broccoli-merge-trees");
@@ -15,7 +16,7 @@ module.exports = {
     });
   },
 
-  treeForVendor(vendorTree) {
+  treeForVendor(/* vendorTree */) {
     let cssTree = new Funnel(
       path.join(this.project.root, "node_modules", "jsoneditor/dist"),
       {
