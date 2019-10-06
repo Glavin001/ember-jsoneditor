@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.9.4](https://github.com/Glavin001/ember-jsoneditor/compare/v0.9.3...v0.9.4) - 2019-10-06
+
+### Merged
+
+- Ember 3.8 [`#29`](https://github.com/Glavin001/ember-jsoneditor/pull/29)
+- Converted README examples and Application template to angle-brackets [`#28`](https://github.com/Glavin001/ember-jsoneditor/pull/28)
+
+### Commits
+
+- Improved demo app [`a2815f5`](https://github.com/Glavin001/ember-jsoneditor/commit/a2815f54aaa183d5933489677c27eb0350afa603)
+- Update readme and application to angle bracket syntax [`8cfcdda`](https://github.com/Glavin001/ember-jsoneditor/commit/8cfcdda4220d309c16dd8687b9318c309cadb2cb)
+- Bump versions of ember-auto-import and gh-pages addons [`400616b`](https://github.com/Glavin001/ember-jsoneditor/commit/400616b89771c6c210a0d4561d7a5d4eae65b0e3)
+- add github pages deploy script [`d085c48`](https://github.com/Glavin001/ember-jsoneditor/commit/d085c4805efba7caa4bb7cf97731299090a4805c)
+
 ## [v0.9.3](https://github.com/Glavin001/ember-jsoneditor/compare/v0.9.2...v0.9.3) - 2019-10-05
 
 ### Merged
