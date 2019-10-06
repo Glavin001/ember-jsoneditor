@@ -1,4 +1,4 @@
-import { isEmpty, isEqual, isPresent } from '@ember/utils';
+import { isEmpty } from '@ember/utils';
 import { computed, observer } from '@ember/object';
 import Component from '@ember/component';
 import { bind }  from '@ember/runloop';
@@ -60,38 +60,33 @@ export default Component.extend({
   /**
   Object with options
   */
+ // prettier-ignore
   options: computed(
-    'mode',
-    'modes',
-    'change',
-    'search',
-    'history',
-    'name',
-    'indentation',
-    'error',
+    'mode', 'modes', 'change', 'search', 'history',
+    'name', 'indentation', 'error',
     function () {
 
-      let props = {};
+      const options = {};
 
-      props['history'] = this.history
-      props['indentation'] = this.indentation;
-      props['mode'] = this.mode;
-      props['modes'] = this.modes;
-      props['name'] = this.name;
-      props['search'] = this.search;
+      options['history'] = this.history
+      options['indentation'] = this.indentation;
+      options['mode'] = this.mode;
+      options['modes'] = this.modes;
+      options['name'] = this.name;
+      options['search'] = this.search;
 
       // https://balinterdi.com/blog/ember-dot-run-dot-bind/
       // assign internal change function to jsoneditor onChange
-      props['onChange'] = bind(this, this._change);
+      options['onChange'] = bind(this, this._change);
 
       // assign internal error function to jsoneditor onError
-      props['onError'] = bind(this, this._error);
+      options['onError'] = bind(this, this._error);
 
       // set nodes if none passed in
       const modes = ['tree', 'view', 'form', 'text', 'code'];
-      props.modes = isPresent(props.modes) ? props.modes : modes;
+      options.modes = options.modes ? options.modes : modes;
 
-      return props;
+      return options;
     }),
 
   /**
@@ -125,6 +120,8 @@ export default Component.extend({
    Triggers `error()` which is user defined
    */
   _error:function(error) {
+    // error is swallowed if function
+    // was not passed to the compoment
     if (this.error)
       this.error(error);
   },
@@ -203,7 +200,7 @@ export default Component.extend({
   JSON did change
   */
   jsonDidChange: observer('json', function () {
-    if (isEqual(this._updating, false)) {
+    if (!this._updating) {
       let json = this.json;
       this.editor.set(json);
     }

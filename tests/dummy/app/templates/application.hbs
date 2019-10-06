@@ -1,81 +1,64 @@
+<header>
+  <div class="title">
+    ember-json-editor
+  </div>
+  <a href="https://github.com/Glavin001/ember-jsoneditor" class="github">
+    <img class="github" alt="" src="images/GitHub-Mark-Light-32px.png" >
+  </a>
+</header>
 <div class="container">
-  <div class="jumbotron">
-    <h2>
-      Welcome to Ember-JSONEditor
-    </h2>
-    <p>
-      Ember component to view, edit and format JSON.
-    </p>
-    <p>
-      <a
-        class="btn btn-primary btn-lg"
-        target="_blank"
-        rel="noopener"
-        href="https://github.com/Glavin001/ember-jsoneditor"
-        role="button"
-      >
-        Learn more
-      </a>
-    </p>
-  </div>
-  <div class="well">
-    <h4>
-      Features
-    </h4>
-    <ul>
-      <li>
-        Two-Way Bindings
-      </li>
-      <li>
-        Set
-        <em>
-          name
-        </em>
-        and
-        <em>
-          mode
-        </em>
-        with component
-      </li>
-    </ul>
-    <hr>
-    <p>
-      Try it out for yourself!
-    </p>
-  </div>
+  <p>
+    Ember component using
+    <a href="https://github.com/josdejong/jsoneditor">
+      jsoneditor
+    </a>
+    to view, edit and format JSON.
+  </p>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-5">
       <h3>
         Editor 1
       </h3>
-      <JsonEditor @json={{this.model}} @mode={{this.mode}} @name={{this.name}} />
-      <h2>
+      <JsonEditor
+        @json={{this.model}}
+        @mode={{this.mode}}
+        @name={{this.name}}
+      />
+      <p class="subTitles">
         Options
-      </h2>
-      Name:
-      {{input value=name}}
-      <br>
+      </p>
+      <div>
+        Name:
+        {{input value=name}}
+      </div>
       Mode:
       {{!-- {{view Ember.Select content=modes value=mode}} --}}
       <select onchange={{action (mut mode) value="target.value"}}>
-        {{#each modes key="@index" as |m|}}
+        {{#each this.modes key="@index" as |m|}}
           <option value={{m}} selected={{eq m mode}}>
             {{m}}
           </option>
         {{/each}}
       </select>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-5">
       <h3>
         Editor 2
       </h3>
-      <JsonEditor @json={{this.model}} @modes={{this.modes}} @mode="code" @name="Two-Way Bindings" />
-      <h2>
-        Raw JSON
-      </h2>
-      <pre>
-        {{json-pretty obj=model}}
-      </pre>
+      <JsonEditor
+        @json={{this.model}}
+        @modes={{this.modes}}
+        @mode="code"
+        @name="Two-Way Bindings"
+      />
+      <div class="col-sm-5">
+        <p class="subTitles">
+          Raw JSON
+        </p>
+        <pre>
+          <JsonPretty @obj={{this.model}} />
+        </pre>
+      </div>
     </div>
   </div>
 </div>

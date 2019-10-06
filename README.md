@@ -7,6 +7,18 @@
 ---
 ## Installation
 
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+
+Previous versions compatibility
+* ember-json-editor v9.3 - Ember.js 2.4 and above
+
+Installation
+------------------------------------------------------------------------------
+
 ```
 ember install ember-jsoneditor
 ```
@@ -14,7 +26,7 @@ ember install ember-jsoneditor
 ## Usage
 
 ```handlebars
-<JsonEditor @json={{model}} @mode={{mode}} @name={{name}} />
+<JsonEditor @json={{this.model}} @mode={{this.mode}} @name={{this.name}} />
 ```
 
 For Ember versions < 3.4, you need to use classic component invocation:
@@ -75,30 +87,8 @@ export default Controller.extend({
 })
 ```
 
-## Development
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
-* `git clone <repository-url>` this repository
-* `cd my-addon`
-* `npm install`
-
-### Linting
-
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
-
-### Running tests
-
-* `ember test` – Runs the test suite on the current Ember version
-* `ember test --server` – Runs the test suite in "watch mode"
-* `ember try:each` – Runs the test suite against multiple Ember versions
-
-### Running the dummy application
-
-* `ember serve`
-* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
 License
 ------------------------------------------------------------------------------
