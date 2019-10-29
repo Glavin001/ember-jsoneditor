@@ -1,4 +1,4 @@
-ember-jsoneditor
+ember-jsoneditor [![npm version](https://badge.fury.io/js/ember-jsoneditor.svg)](http://badge.fury.io/js/ember-jsoneditor)
 ==============================================================================
 
 
