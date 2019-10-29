@@ -1,3 +1,1 @@
-import JSONEditor from 'ember-jsoneditor/components/json-editor';
-
-export default JSONEditor;
+export { default } from 'ember-jsoneditor/components/json-editor';
