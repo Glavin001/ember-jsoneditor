@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.9.5](https://github.com/Glavin001/ember-jsoneditor/compare/v0.9.4...v0.9.5) - 2019-10-29
+
+### Merged
+
+- Update dependencies [`#31`](https://github.com/Glavin001/ember-jsoneditor/pull/31)
+
+### Commits
+
+- Added missing npm badge [`3443f9d`](https://github.com/Glavin001/ember-jsoneditor/commit/3443f9d2ce3f45631d3a36337e04fa3652647102)
+
 ## [v0.9.4](https://github.com/Glavin001/ember-jsoneditor/compare/v0.9.3...v0.9.4) - 2019-10-06
 
 ### Merged
