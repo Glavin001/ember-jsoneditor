@@ -2,8 +2,8 @@
 
 ## Installation
 
-* `git clone <repository-url>`
-* `cd my-addon`
+* `git clone git@github.com:Glavin001/ember-jsoneditor.git`
+* `cd ember-jsoneditor`
 * `npm install`
 
 ## Linting

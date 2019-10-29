@@ -1,7 +1,8 @@
+/* eslint-disable ember/no-observers */
+import Component from '@ember/component';
 import { isEmpty } from '@ember/utils';
 import { computed, observer } from '@ember/object';
-import Component from '@ember/component';
-import { bind }  from '@ember/runloop';
+import { bind } from '@ember/runloop';
 import JSONEditor from 'jsoneditor';
 
 export default Component.extend({
@@ -25,7 +26,6 @@ export default Component.extend({
   */
   editor: null,
 
-
   /**
    Component is rendered on DOM, so
    we can create the editor
@@ -36,9 +36,8 @@ export default Component.extend({
     let json = this.json;
     let editor = new JSONEditor(this.element, options, json);
 
-    if (this.expand)
-      editor.expandAll();
-      
+    if (this.expand) editor.expandAll();
+
     // set cached editor
     this.set('_editor', editor);
     this.set('editor', editor);
@@ -60,7 +59,7 @@ export default Component.extend({
   /**
   Object with options
   */
- // prettier-ignore
+  // prettier-ignore
   options: computed(
     'mode', 'modes', 'change', 'search', 'history',
     'name', 'indentation', 'error',
@@ -119,11 +118,10 @@ export default Component.extend({
    Error event handler.
    Triggers `error()` which is user defined
    */
-  _error:function(error) {
+  _error: function(error) {
     // error is swallowed if function
     // was not passed to the compoment
-    if (this.error)
-      this.error(error);
+    if (this.error) this.error(error);
   },
 
   /**
@@ -191,15 +189,14 @@ export default Component.extend({
   /**
   Editor did change.
   */
-  editorDidChange: observer('editor', function () {
-
+  editorDidChange: observer('editor', function() {
     // this.get('editor');
   }),
 
   /**
   JSON did change
   */
-  jsonDidChange: observer('json', function () {
+  jsonDidChange: observer('json', function() {
     if (!this._updating) {
       let json = this.json;
       this.editor.set(json);
@@ -209,7 +206,7 @@ export default Component.extend({
   /**
   Mode did change
   */
-  modeDidChange: observer('mode', function () {
+  modeDidChange: observer('mode', function() {
     let mode = this.mode;
     this.editor.setMode(mode);
   }),
@@ -217,9 +214,8 @@ export default Component.extend({
   /**
   Name did change
   */
-  nameDidChange: observer('name', function () {
+  nameDidChange: observer('name', function() {
     let name = this.name;
     this.editor.setName(name);
-  }),
-
+  })
 });

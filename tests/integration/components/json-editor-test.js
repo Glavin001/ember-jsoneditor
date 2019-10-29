@@ -62,13 +62,13 @@ module('Integration | Component | json editor', function(hooks) {
   test('mode - view', async function(assert) {
     await render(hbs`{{json-editor json=json mode='view'}}`);
     assert.ok(find('.jsoneditor-modes button').textContent.trim().indexOf('View') > -1);
-    assert.equal(findAll('.jsoneditor-tree > div[contenteditable="false"]').length, 5);
+    assert.dom('.jsoneditor-tree > div[contenteditable="false"]').exists({ count: 5 });
   });
 
   test('mode - form', async function(assert) {
     await render(hbs`{{json-editor json=json mode='form'}}`);
     assert.ok(find('.jsoneditor-modes button').textContent.trim().indexOf('Form') > -1);
-    assert.equal(findAll('.jsoneditor-tree > div[contenteditable="true"]').length, 2);
+    assert.dom('.jsoneditor-tree > div[contenteditable="true"]').exists({ count: 2 });
 
     const content = find('.jsoneditor-tree').querySelectorAll('div[contenteditable="true"]');
     const last = content[content.length - 1].textContent.toString();

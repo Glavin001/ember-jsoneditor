@@ -1,11 +1,12 @@
-# Ember JSON Editor [![npm version](https://badge.fury.io/js/ember-jsoneditor.svg)](http://badge.fury.io/js/ember-jsoneditor)
+ember-jsoneditor [![npm version](https://badge.fury.io/js/ember-jsoneditor.svg)](http://badge.fury.io/js/ember-jsoneditor)
+==============================================================================
+
+
 
 > Ember component for [JSON Editor](https://github.com/josdejong/jsoneditor/) to view, edit and format JSON.
 
 **Live demo**: http://glavin001.github.io/ember-jsoneditor/
 
----
-## Installation
 
 Compatibility
 ------------------------------------------------------------------------------
@@ -23,7 +24,9 @@ Installation
 ember install ember-jsoneditor
 ```
 
-## Usage
+
+Usage
+------------------------------------------------------------------------------
 
 ```handlebars
 <JsonEditor @json={{this.model}} @mode={{this.mode}} @name={{this.name}} />
@@ -86,6 +89,11 @@ export default Controller.extend({
   }
 })
 ```
+
+
+
+Contributing
+------------------------------------------------------------------------------
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
 

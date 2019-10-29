@@ -1,8 +1,10 @@
 import Controller from '@ember/controller';
-import { computed }  from '@ember/object';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
-  modes: computed(() => ['tree','view','form','code','text']),
+  modes: computed(function() {
+    return ['tree', 'view', 'form', 'code', 'text'];
+  }),
   mode: 'tree',
   name: 'JSONEditor'
 });
