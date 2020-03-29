@@ -13,7 +13,7 @@ Compatibility
 
 * Ember.js v3.4 or above
 * Ember CLI v2.13 or above
-* Node.js v8 or above
+* Node.js v10 or above
 
 Previous versions compatibility
 * ember-json-editor v9.3 - Ember.js 2.4 and above
