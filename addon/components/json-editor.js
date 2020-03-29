@@ -61,8 +61,7 @@ export default Component.extend({
   */
   // prettier-ignore
   options: computed(
-    'mode', 'modes', 'change', 'search', 'history',
-    'name', 'indentation', 'error',
+    '_change', '_error', 'history', 'indentation', 'mode', 'modes', 'search',  'name',  
     function () {
 
       const options = {};

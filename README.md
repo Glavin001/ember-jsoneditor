@@ -11,8 +11,9 @@ ember-jsoneditor [![npm version](https://badge.fury.io/js/ember-jsoneditor.svg)]
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v2.18 or above
+* Ember.js v3.4 or above
 * Ember CLI v2.13 or above
+* Node.js v10 or above
 
 Previous versions compatibility
 * ember-json-editor v9.3 - Ember.js 2.4 and above
@@ -58,7 +59,7 @@ name        | Field name for the JSON root node,                                
 search      | boolean - show editor search box                                                  | true
 
 
-Example for using event options
+Example using event options
 
 ```handlebars
 {{!-- app/templates/application.hbs --}}
