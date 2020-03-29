@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.0.0](https://github.com/Glavin001/ember-jsoneditor/compare/v0.9.5...v1.0.0) - 2020-03-29
+
+### Merged
+
+- Ember 3.12 [`#33`](https://github.com/Glavin001/ember-jsoneditor/pull/33)
+
+### Commits
+
+- 3.4...3.12 [`af5efe1`](https://github.com/Glavin001/ember-jsoneditor/commit/af5efe10f2956ad9b4b6057f33dfdc37f10809ea)
+- npm audit fix [`be5b246`](https://github.com/Glavin001/ember-jsoneditor/commit/be5b246a474207a59f7c6cc69792eaef6885eac0)
+- Fixed linting errors [`d3b5ac0`](https://github.com/Glavin001/ember-jsoneditor/commit/d3b5ac0f835dc328d98d0a45bb3755926a86d268)
+- Drop node v8 support [`8be512f`](https://github.com/Glavin001/ember-jsoneditor/commit/8be512fb6239a059373cecec073773c540326478)
+
 ## [v0.9.5](https://github.com/Glavin001/ember-jsoneditor/compare/v0.9.4...v0.9.5) - 2019-10-29
 
 ### Merged
@@ -36,7 +49,7 @@ All notable changes to this project will be documented in this file.
 ### Commits
 
 - Ran codemods to remove jQuery [`dca50a9`](https://github.com/Glavin001/ember-jsoneditor/commit/dca50a93e089bf5197cafdb9dff26eab5b3eabea)
-- Switch from Yarn back to NPM because &#x27;npm audit fix&#x27; [`5057c7c`](https://github.com/Glavin001/ember-jsoneditor/commit/5057c7c36235b628775d402e36f1d941eaebc045)
+- Switch from Yarn back to NPM because 'npm audit fix' [`5057c7c`](https://github.com/Glavin001/ember-jsoneditor/commit/5057c7c36235b628775d402e36f1d941eaebc045)
 - Add auto-changelog [`0f7148c`](https://github.com/Glavin001/ember-jsoneditor/commit/0f7148c2fe46a4b7cdbd4afd9e3c168b7b88aaf5)
 - Fixed tests aferter @ember/jquery was removed [`f10784d`](https://github.com/Glavin001/ember-jsoneditor/commit/f10784d84897fb3c58cbcc6fd651e91e259e2380)
 
